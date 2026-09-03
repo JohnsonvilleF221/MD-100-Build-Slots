@@ -30,31 +30,6 @@ sets that state's shared building-slot base. Five files do the work:
   offset down-and-right (icon `135,316` → `187,325`; text `162,321` → `210,328`) to clear the
   bottom row of slots. Everything else in the file is byte-identical to MD's.
 
-### Why the slots overlapped
-
-The grid area is fixed: the `shared_slot_building_bg` panel is 440px wide at x=8 (so the grid runs
-x=100→448, **348px**) and y=320→564 with the grid starting at y=335 (**229px**). At 12 columns and
-9 rows that is exactly 348/12 = **29px** and 229/9 ≈ **25px** per cell — there is no spare room in
-either axis.
-
-But `state_shared_slot_building_entry` draws sprites at their native sizes, which are all *larger*
-than that cell:
-
-| Element | Native | Drawn before | vs 29×25 cell |
-| ------- | ------ | ------------ | ------------- |
-| `build_slot_bg` | 39×32 | 39×32 (unscaled) | **+10 / +7 overlap** |
-| `building_picture` | 46×46 | 28.1 (scale 0.61) | +3 vertical overlap |
-| `building_status_overlay` | 46×46 | **46×46 (unscaled)** | **+17 / +21 overlap** |
-
-The unscaled status overlay was by far the worst offender. Each entry is a 70×70 container with
-`clipping = no`, so all of this spilled over the neighbouring cells. The fix scales the entry
-contents down to the cell: bg `0.74` → 28.9×23.7, picture and overlay `0.54` → 24.8×24.8, remove
-button `0.74`, and the damage bar repositioned to `x=3 y=20`.
-
-The icon is slightly smaller than before (24.8 vs 28.1) — in a 29×25 cell you cannot have a 28px
-icon *and* no overlap. To trade back the other way, raise `building_picture` `scale` and accept
-some overlap.
-
 Ramp (base `local_building_slots`, even ~+8/band, capping at 85; nothing below `state_09` changes):
 
 | Category | Population band | MD base | This submod |
