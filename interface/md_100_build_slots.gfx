@@ -1,0 +1,19 @@
+# MD 100 Build Slots — additive sprite definitions.
+# Defines a NEW sprite name only; MD's own GFX_damage_bar is left untouched so
+# province building entries and landmarks keep their normal bar.
+spriteTypes = {
+
+	# Slim damage bar for the shared building-slot grid.
+	# MD's GFX_damage_bar is 32x6; rotated 90 degrees in the slot entry that is a
+	# 6px-thick bar 32px long, which overflows the 25px grid row and crowds the
+	# building icon. This is half the thickness and short enough to stay in the row.
+	progressbartype = {
+		name = "GFX_damage_bar_slim"
+		color = { 1.0 1.0 1.0 }
+		colortwo = { 1.0 1.0 1.0 }
+		textureFile1 = "gfx/interface/building_damage_bar.dds"
+		textureFile2 = "gfx/interface/building_damage_bar_bg.dds"
+		size = { x = 24 y = 3 }
+		effectFile = "gfx/FX/progress_startend.lua"
+	}
+}

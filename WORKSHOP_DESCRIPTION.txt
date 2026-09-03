@@ -1,0 +1,40 @@
+[h1]MD 100 Build Slots[/h1]
+
+A [b]Millennium Dawn[/b] submod that lets populous states actually build like populous states. Stock MD tops out at [b]50[/b] base building slots for a 65m+ state and clamps the engine ceiling at [b]56[/b]. This raises the population ramp to [b]85[/b] and lifts the hard cap to [b]100[/b], leaving room for railway and infrastructure modifiers to stack on top.
+
+[h2]What changes[/h2]
+
+MD gives every state a category based on its population, and that category sets the state's shared building-slot base. This submod re-tunes the top ten categories and leaves everything below them alone:
+
+[table]
+[tr][th]Population band[/th][th]Stock MD[/th][th]This submod[/th][/tr]
+[tr][td]8.5m – 10.5m[/td][td]22[/td][td]22 (unchanged)[/td][/tr]
+[tr][td]10.5m – 13m[/td][td]25[/td][td]30[/td][/tr]
+[tr][td]13m – 16m[/td][td]28[/td][td]38[/td][/tr]
+[tr][td]16m – 19m[/td][td]31[/td][td]46[/td][/tr]
+[tr][td]19m – 23m[/td][td]33[/td][td]54[/td][/tr]
+[tr][td]23m – 27m[/td][td]36[/td][td]61[/td][/tr]
+[tr][td]27m – 34m[/td][td]39[/td][td]69[/td][/tr]
+[tr][td]34m – 42m[/td][td]42[/td][td]77[/td][/tr]
+[tr][td]42m – 52m[/td][td]44[/td][td]85[/td][/tr]
+[tr][td]52m – 65m[/td][td]47[/td][td]85[/td][/tr]
+[tr][td]65m+[/td][td]50[/td][td]85[/td][/tr]
+[/table]
+
+Anything under 8.5m population is untouched — this is aimed squarely at the states that were being squeezed, not a blanket buff.
+
+[h2]The engine cap[/h2]
+
+Raising the ramp on its own does nothing: HOI4 clamps total shared slots at [b]MAX_SHARED_SLOTS[/b], which MD sets to 56. This submod raises it to [b]100[/b]. An 85-base state with the usual +10% railway and infrastructure modifiers lands around 93 and can climb toward the cap.
+
+[h2]The state view fits[/h2]
+
+100 slots do not fit in a panel laid out for 56, so the shared-slot grid is retuned to [b]12 columns[/b] at a smaller icon size. The whole grid stays inside the state view instead of spilling past it.
+
+[h2]Compatibility[/h2]
+
+Built for HOI4 1.19.x and Millennium Dawn 2.0. Load Millennium Dawn first and this submod last. The launcher sorts this out for you, since MD's Beta Test, Modern Day and Developer Version are all listed as dependencies.
+
+It replaces MD's building slot categories and two of its interface files, so it will clash with any other submod that changes building slots or the state screen.
+
+You can add it to a game already in progress. Your slot counts update the moment the save loads. Do restart the game fully after enabling it, though, because some of the changes are only read when the game starts.

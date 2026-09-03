@@ -1,0 +1,520 @@
+# MD 100 Build Slots - copy of Millennium Dawn's interface/MD_energy_scripted.gui.
+# ONLY change: the "Renewable Energy Hotspot" readout (state_renewable_text + energy_icon)
+# is shrunk so it stops colliding with the 12-column building-slot grid.
+# Re-sync from MD if MD changes this file. Based on MD 2.0.0 @ 060d405415 (2026-09-02).
+guiTypes = {
+	containerWindowType = {
+		name = "state_economic_ui_view"
+		position = { x = 35 y = 200 }
+
+		iconType = {
+			name ="productivity_icon"
+			spriteType = "GFX_mapmode_buttons_deselected_small_productivity_map_mode"
+			position = { x = -15 y = 24 }
+			scale = 1.2
+		}
+
+		iconType = {
+			name = "productivity_background"
+			spriteType = "GFX_generic_box_wider"
+			position = { x = 29 y = 25 }
+			Orientation = "UPPER_LEFT"
+		}
+
+		instantTextBoxType = {
+			name = "state_productivity_amount"
+			position = { x = 19 y = 28 }
+			font = "hoi_18mbs"
+			format = center
+			maxWidth = 100
+			maxHeight = 24
+			fixedsize = yes
+			text = "NUM_STATE_PRODUCTIVITY"
+			pdx_tooltip = "NUM_STATE_PRODUCTIVITY_DESC"
+			pdx_tooltip_delayed = "NUM_STATE_PRODUCTIVITY_DELAYED_DESC"
+		}
+
+		iconType = {
+			name ="energy_icon"
+			spriteType = "GFX_modifiers_energy"
+			position = { x = 187 y = 325 } #MD: { x = 135 y = 316 }
+			scale = 0.7
+		}
+
+		instantTextBoxType = {
+			name = "state_renewable_text"
+			position = { x = 210 y = 328 } #MD: { x = 162 y = 321 }
+			font = "hoi_16mbs" #MD: hoi_20bs
+			format = left
+			maxWidth = 250
+			maxHeight = 24
+			fixedsize = yes
+			text = "[disp_renew_hotspot]"
+			pdx_tooltip = "renewable_capacity_factor_dyn_mod_TT"
+		}
+	}
+	
+	containerWindowType = {
+		name = "open_energy_gui"
+		position = { x = 560 y = 10	 }
+		buttonType = {
+			name = "open_energy_window"
+			spriteType = "GFX_energy_button"
+			position = { x = 0 y = 0 }
+			pdx_tooltip = "OPEN_ENERGY_BUTTON"
+			pdx_tooltip_delayed = "OPEN_ENERGY_BUTTON_TT"
+			shortcut = "ctrl+e"
+		}
+	}
+
+	containerWindowType = {
+		name = "energy_scripted_gui"
+		position = { x = 675 y = 0 }
+		size = { width = 557 height = 409 }
+		background = {
+			name = "Background"
+			spriteType ="GFX_energy_ui"
+		}
+
+		instantTextBoxType = {
+			name = "header_text_title"
+			position = { x = 230 y = 28 }
+			font = "hoi_36header"
+			text = "HEADER_TEXT_TITLE"
+			maxWidth = 100
+			maxHeight = 20
+			format = center
+		}
+
+		# Energy Producing Building Grid
+		containerWindowType = {
+			name = "total_energy_production_buildings_grid"
+			position = { x = 63 y = 95 }
+
+			# Fossil Fuel Power Plant
+			iconType = {
+				name = "total_ffp_bg"
+				spriteType = "GFX_generic_box_smallest"
+				position = { x = 30	y = 2 }
+			}
+			instantTextBoxType = {
+				name = "total_ffp_amount"
+				position = { x = 38 y = 6 }
+				font = "hoi_18mbs"
+				text = "total_ffp_amount_number"
+				format = centre
+				maxWidth = 55
+				maxHeight = 24
+				fixedsize = yes
+				pdx_tooltip = "total_ffp_amount_tt"
+				pdx_tooltip_delayed = "total_ffp_amount_tt_delayed"
+			}
+			iconType = {
+				name = "total_ffp"
+				position = { x = 5 y = 0 }
+				spriteType = "GFX_buildings_strip"
+				frame = 34
+				scale = 0.63
+			}
+
+			# Nuclear Reactor
+			iconType = {
+				name = "total_nuclear_reactor_bg"
+				spriteType = "GFX_generic_box_smallest"
+				position = { x = 140	y = 2 }
+			}
+			instantTextBoxType = {
+				name = "total_nuclear_reactor_amount"
+				position = { x = 148 y = 6 }
+				font = "hoi_18mbs"
+				text = "total_nuclear_reactor_amount"
+				format = centre
+				maxWidth = 55
+				maxHeight = 24
+				fixedsize = yes
+				pdx_tooltip = "total_nuclear_reactor_amount_tt"
+				pdx_tooltip_delayed = "total_nuclear_reactor_amount_tt_delayed"
+			}
+			iconType = {
+				name = "total_nuclear_reactor"
+				position = { x = 115 y = 0 }
+				spriteType = "GFX_buildings_strip"
+				frame = 27
+				scale = 0.63
+			}
+
+			# Renewable Energy Infrastructure
+			iconType = {
+				name = "total_renewable_energy_bg"
+				spriteType = "GFX_generic_box_smallest"
+				position = { x = 250	y = 2 }
+			}
+			instantTextBoxType = {
+				name = "total_renewable_energy_amount"
+				position = { x = 258 y = 6 }
+				font = "hoi_18mbs"
+				text = "[?renewable_energy_infra]"
+				format = centre
+				maxWidth = 55
+				maxHeight = 24
+				fixedsize = yes
+				pdx_tooltip = "total_renewable_energy_amount_tt"
+				pdx_tooltip_delayed = "total_renewable_energy_amount_tt_delayed"
+			}
+			iconType = {
+				name = "total_renewable_energy"
+				spriteType = "GFX_buildings_strip"
+				frame = 10
+				scale = 0.63
+				position = { x = 225 y = 0 }
+			}
+
+			# Fuel Silo
+			iconType = {
+				name = "total_fuel_silo_bg"
+				spriteType = "GFX_generic_box_smallest"
+				position = { x = 360 y = 2 }
+			}
+			instantTextBoxType = {
+				name = "total_fuel_silo_amount"
+				position = { x = 368 y = 6 }
+				font = "hoi_18mbs"
+				text = "[?fuel_silos]"
+				format = centre
+				maxWidth = 55
+				maxHeight = 24
+				fixedsize = yes
+				pdx_tooltip = "total_fuel_silo_amount_tt"
+				pdx_tooltip_delayed = "total_fuel_silo_amount_tt_delayed"
+			}
+			iconType = {
+				name = "total_fuel_silo"
+				spriteType = "GFX_buildings_strip"
+				frame = 14
+				scale = 0.63
+				position = { x = 335 y = 0 }
+			}
+		}
+
+		# Generation
+		containerWindowType = {
+			name = "energy_generation_values"
+			position = { x = 22 y = 130 }
+
+			instantTextBoxType = {
+				name = "energy_generation_total"
+				position = { x = 0 y = 0 }
+				font = "hoi_24header"
+				text = "TOTAL_GENERATION_ENERGY"
+				maxWidth = 375
+				maxHeight = 20
+				format = left
+				pdx_tooltip = "ENERGY_GENERATION_TOTAL_TT"
+				pdx_tooltip_delayed = "ENERGY_GENERATION_TOTAL_DELAYED_TT"
+			}
+		}
+
+		# Consumption
+		containerWindowType = {
+			name = "energy_consumption_values"
+			position = { x = 22 y = 150 }
+
+			instantTextBoxType = {
+				name = "energy_consumption_total"
+				position = { x = 0 y = 0 }
+				font = "hoi_24header"
+				text = "TOTAL_CONSUMPTION_ENERGY"
+				maxWidth = 375
+				maxHeight = 20
+				format = left
+				pdx_tooltip = "TOTAL_CONSUMPTION_ENERGY_TT"
+				pdx_tooltip_delayed = "TOTAL_CONSUMPTION_ENERGY_DELAYED_TT"
+			}
+		}
+
+		# Total
+		containerWindowType = {
+			name = "misc_values"
+			position = { x = 22 y = 170 }
+
+			instantTextBoxType = {
+				name = "energy_fulfillment_total"
+				position = { x = 0 y = 10 }
+				font = "hoi_24header"
+				text = "MISSING_FULFILLMENT_VALUE"
+				maxWidth = 375
+				maxHeight = 20
+				format = left
+				pdx_tooltip = "MISSING_FULFILLMENT_VALUE_TT"
+			}
+
+			instantTextBoxType = {
+				name = "net_energy_balance"
+				position = { x = 0 y = 30 }
+				font = "hoi_24header"
+				text = "NET_ENERGY_BALANCE"
+				maxWidth = 375
+				maxHeight = 20
+				format = left
+				pdx_tooltip = "NET_ENERGY_BALANCE_TT"
+			}
+
+			instantTextBoxType = {
+				name = "total_energy_misc_value_headers"
+				position = { x = 0 y = 55 }
+				font = "hoi_24header"
+				text = "TOTAL_ENERGY_MISC_VALUE_HEADER"
+				maxWidth = 375
+				maxHeight = 20
+				format = left
+			}
+
+			instantTextBoxType = {
+				name = "total_hourly_fuel_consumption_values"
+				position = { x = 0 y = 80 }
+				font = "hoi_18mbs"
+				text = "TOTAL_HOURLY_FUEL_CONSUMPTION_VALUES"
+				maxWidth = 475
+				maxHeight = 20
+				format = left
+				pdx_tooltip = "TOTAL_HOURLY_FUEL_CONSUMPTION_VALUES_TT"
+			}
+
+			instantTextBoxType = {
+				name = "total_hourly_population_fuel_consumption_values"
+				position = { x = 0 y = 100 }
+				font = "hoi_18mbs"
+				text = "TOTAL_HOURLY_POPULATION_FUEL_CONSUMPTION_VALUES"
+				maxWidth = 375
+				maxHeight = 20
+				format = left
+				pdx_tooltip = "TOTAL_HOURLY_POPULATION_FUEL_CONSUMPTION_VALUES_TT"
+			}
+
+			instantTextBoxType = {
+				name = "total_weekly_nuclear_material_production_values"
+				position = { x = 0 y = 120 }
+				font = "hoi_18mbs"
+				text = "TOTAL_WEEKLY_NUCLEAR_MATERIAL_PRODUCTION"
+				maxWidth = 375
+				maxHeight = 40
+				format = left
+				pdx_tooltip = "TOTAL_WEEKLY_NUCLEAR_MATERIAL_PRODUCTION_TT"
+			}
+
+			instantTextBoxType = {
+				name = "stored_energy"
+				position = { x = 0 y = 140 }
+				font = "hoi_18mbs"
+				text = "TOTAL_STORED_ENERGY"
+				maxWidth = 510
+				maxHeight = 40
+				format = left
+				pdx_tooltip = "TOTAL_STORED_ENERGY_TT"
+			}
+		}
+
+		# Energy Screen Buttons
+		containerWindowType = {
+			name = "energy_screen_buttons"
+			position = { x = 12 y = 350 }
+
+			buttonType = {
+				name = "close_energy_screen_button"
+				position = { x = 495 y = -340 }
+				quadTextureSprite ="GFX_closebutton"
+				buttonFont = "Main_14_black"
+				shortcut = "ESCAPE"
+				Orientation = "UPPER_RIGHT"
+				clicksound = click_close
+				pdx_tooltip = "CLOSE"
+			}
+
+			containerWindowType = {
+				name = "refresh_energy_screen_bg"
+				position = { x = 0 y = -17 }
+
+				buttonType = {
+					name = "refresh_energy_screen_bg"
+					spriteType = "GFX_generic_button_wide"
+					position = { x=0 y=0 }
+					pdx_tooltip = "REFRESH_TAX_RATES_TOOLTIP"
+				}
+
+				instantTextBoxType = {
+					name ="refresh_energy_screen_text"
+					position = { x= 30 y = 0 }
+					font = "hoi_18mbs"
+					text = "REFRESH_TAX_RATE"
+					format = centre
+					maxWidth = 100
+					maxHeight = 24
+					fixedsize = yes
+
+					pdx_tooltip = "REFRESH_TAX_RATES_TOOLTIP"
+				}
+			}
+
+			buttonType = {
+				name = "heavy_power_restrictions_button"
+				position = {x=0 y=0}
+				spriteType = "GFX_double_negative_power"
+				orientation = "UPPER_RIGHT"
+				clicksound = click_default
+				pdx_tooltip = heavy_power_restrictions_button_tt
+				pdx_tooltip_delayed = heavy_power_restrictions_button_delayed_tt
+			}
+			buttonType = {
+				name = "some_power_restrictions_button"
+				position = {x=44 y=0}
+				spriteType = "GFX_negative_power"
+				orientation = "UPPER_RIGHT"
+				clicksound = click_default
+				pdx_tooltip = some_power_restrictions_button_tt
+				pdx_tooltip_delayed = some_power_restrictions_button_delayed_tt
+			}
+			buttonType = {
+				name = "no_power_rules_button"
+				position = {x=88 y=0}
+				spriteType = "GFX_neutral_power"
+				orientation = "UPPER_RIGHT"
+				clicksound = click_default
+				pdx_tooltip = no_power_restrictions_button_tt
+				pdx_tooltip_delayed = no_power_restrictions_button_delayed_tt
+			}
+			buttonType = {
+				name = "some_additional_consumption_button"
+				position = { x = 132 y = 0 }
+				spriteType = "GFX_positive_power"
+				orientation = "UPPER_RIGHT"
+				clicksound = click_default
+				pdx_tooltip = some_additional_consumption_button_tt
+				pdx_tooltip_delayed = some_additional_consumption_button_delayed_tt
+			}
+			buttonType = {
+				name = "heavy_additional_consumption_button"
+				position = { x = 176 y = 0 }
+				spriteType = "GFX_double_positive_power"
+				orientation = "UPPER_RIGHT"
+				clicksound = click_default
+				pdx_tooltip = heavy_additional_consumption_button_tt
+				pdx_tooltip_delayed = heavy_additional_consumption_button_delayed_tt
+			}
+			buttonType = {
+				position = { x = 220 y = 15 }
+				name = "enable_nuclear_reactor_fuel_production"
+				quadTextureSprite ="GFX_sort_button_83x29"
+				buttonText = "[enabled_nuclear_reactor_fuel_production_button]"
+				buttonFont = "hoi_16mbs"
+				pdx_tooltip = "enable_nuclear_reactor_fuel_production_tt"
+				pdx_tooltip_delayed = "enable_nuclear_reactor_fuel_production_delayed_tt"
+				clicksound = click_checkbox
+			}
+
+			instantTextboxType = {
+				name = "uranium_enrichment"
+				position = { x = 220 y = -5 }
+				font = "hoi_16mbs"
+				borderSize = {x = 0 y = 0}
+				text = "URANIUM_ENRICHMENT"
+				maxWidth = 180
+				maxHeight = 20
+				format = centre
+			}
+
+			iconType = {
+				name = "nuclear_energy_button"
+				quadTextureSprite = "GFX_nuclear_energy"
+				position = { x = 360 y = 12 }
+				scale = 0.5
+			}
+
+			iconType = {
+				name = "ongoing_energy_anim"
+				spriteType = "GFX_ongoing_contruction_anim"
+				position = { x = 305 y = 23 }
+			}
+
+			instantTextboxType = {
+				name = "nuclear_energy_prod"
+				position = { x = 312 y = 25 }
+				font = "hoi_16mbs"
+				borderSize = {x = 0 y = 0}
+				text = "NUCLEAR_ENERGY_PROD"
+				maxWidth = 80
+				maxHeight = 20
+				format = left
+			}
+
+			instantTextboxType = {
+				name = "automation_energy_consumption_policy_label"
+				position = { x = 396 y = -17 }
+				font = "hoi_16mbs"
+				text = "ENERGY_POLICY_AUTOMATION_SHORT"
+				maxWidth = 36
+				maxHeight = 20
+				fixedsize = yes
+				format = center
+				pdx_tooltip = "ENERGY_POLICY_AUTOMATION_TT"
+			}
+
+			buttonType = {
+				name = "automation_energy_consumption_policy_checkbox"
+				position = { x = 402 y = 0 }
+				spriteType = "GFX_generic_checkbox_open"
+				clicksound = click_checkbox
+				pdx_tooltip = "ENERGY_POLICY_AUTOMATION_TT"
+			}
+
+			buttonType = {
+				name = "build_battery_park_button"
+				position = { x = 436 y = 0 }
+				spriteType = "GFX_battery_park_build"
+				orientation = "UPPER_RIGHT"
+				clicksound = click_default
+				pdx_tooltip = build_battery_park_button_tt
+				pdx_tooltip_delayed = build_battery_park_button_delayed_tt
+			}
+			buttonType = {
+				name = "buy_fuel_for_money_button"
+				position = { x = 480 y = 0 }
+				spriteType = "GFX_fuel_from_market"
+				orientation = "UPPER_RIGHT"
+				clicksound = click_default
+				pdx_tooltip = buy_fuel_for_money_button_tt
+				pdx_tooltip_delayed = buy_fuel_for_money_button_delayed_tt
+			}
+
+			# Toggle Power Production
+			instantTextboxType = {
+				name = "toggle_power_production_type"
+				position = { x = 315 y = -220 }
+				font = "hoi_24header"
+				borderSize = {x = 0 y = 0}
+				text = "TOGGLE_POWER_PRODUCTION"
+				maxWidth = 220
+				maxHeight = 20
+				format = centre
+			}
+			buttonType = {
+				name = "toggle_fossil_fuel_power_plant_generation"
+				position = { x = 375 y = -200 }
+				spriteType = "GFX_double_positive_power"
+				buttonFont = "hoi_16mbs"
+				pdx_tooltip = "toggle_fossil_fuel_power_plant_generation_tt"
+				pdx_tooltip_delayed = "toggle_fossil_fuel_power_plant_generation_delayed_tt"
+				clicksound = click_checkbox
+			}
+			buttonType = {
+				name = "toggle_nuclear_power_plant_generation"
+				position = { x = 425 y = -200 }
+				spriteType = "GFX_double_positive_power"
+				buttonFont = "hoi_16mbs"
+				pdx_tooltip = "toggle_nuclear_power_plant_generation_tt"
+				pdx_tooltip_delayed = "toggle_nuclear_power_plant_generation_delayed_tt"
+				clicksound = click_checkbox
+			}
+
+		}
+	}
+}

@@ -1,0 +1,8 @@
+# HOI4 / Millennium Dawn source files are LF. Force LF on checkout for every
+# platform so a Windows clone does not rewrite them to CRLF.
+* text=auto eol=lf
+
+# Binary assets - never touch these
+*.png binary
+*.dds binary
+*.tga binary
