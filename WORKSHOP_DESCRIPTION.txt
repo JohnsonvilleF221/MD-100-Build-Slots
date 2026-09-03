@@ -23,18 +23,10 @@ MD gives every state a category based on its population, and that category sets 
 
 Anything under 8.5m population is untouched — this is aimed squarely at the states that were being squeezed, not a blanket buff.
 
-[h2]The engine cap[/h2]
-
-Raising the ramp on its own does nothing: HOI4 clamps total shared slots at [b]MAX_SHARED_SLOTS[/b], which MD sets to 56. This submod raises it to [b]100[/b]. An 85-base state with the usual +10% railway and infrastructure modifiers lands around 93 and can climb toward the cap.
-
-[h2]The state view fits[/h2]
-
-100 slots do not fit in a panel laid out for 56, so the shared-slot grid is retuned to [b]12 columns[/b] at a smaller icon size. The whole grid stays inside the state view instead of spilling past it.
-
 [h2]Compatibility[/h2]
 
 Built for HOI4 1.19.x and Millennium Dawn 2.0. Load Millennium Dawn first and this submod last. The launcher sorts this out for you, since MD's Beta Test, Modern Day and Developer Version are all listed as dependencies.
 
 It replaces MD's building slot categories and two of its interface files, so it will clash with any other submod that changes building slots or the state screen.
 
-You can add it to a game already in progress. Your slot counts update the moment the save loads. Do restart the game fully after enabling it, though, because some of the changes are only read when the game starts.
+Not save game compatible.
